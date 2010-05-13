@@ -21,5 +21,5 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    py_modules=['configpy'],
+    packages=['configpy'],
 )
