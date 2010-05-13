@@ -2,7 +2,7 @@
 
 rm -rf build/ dist/ configpy.egg-info/ configpy.tgz
 cd ..
-tar czf configpy.tgz --exclude *.pyc --exclude .svn --exclude .git --exclude .DS_Store configpy
+tar czf configpy.tgz -X configpy/.gitignore --exclude ".*" configpy
 mv configpy.tgz configpy
 
 #/usr/local/bin/python3.0 setup.py bdist_egg
