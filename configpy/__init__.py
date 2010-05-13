@@ -41,11 +41,17 @@ except ImportError:
 VAR_STR = '\$\{(.*?)\}'
 RE_HAS_VAR_REF = re.compile('.*%s.*' % VAR_STR)
 RE_VAR_REF = re.compile(VAR_STR)
+MULTI_LINE_COMMENT = re.compile('/\*.*?\*/', re.DOTALL)
+SINGLE_LINE_COMMENT = re.compile('//.*\n')
 
 class Config(object):
     
     def __init__(self, config_str, unrestricted=None):
         self.config_str = config_str
+        # strip comments (if any exist)
+        config_str = MULTI_LINE_COMMENT.sub('', config_str, re.DOTALL|re.M)
+        config_str = SINGLE_LINE_COMMENT.sub('\n', config_str, re.DOTALL|re.M)
+        
         self.config = json.loads(config_str)
         self._depends = {}
         self._evaluated = []

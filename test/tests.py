@@ -231,7 +231,25 @@ def test_file():
 
     assert "admin" == config.db_username
     assert "password" == config.db_password
+    assert "http://localhost" == config.host
 
+def test_simple_variable():
+    config_str = """
+    /* We can use single line */
+    /* and multi-line
+       Javascript like comments */
+    {
+        "var_a": "AAAA", // or simple single line comments too
+        /* we can mix comments everywhere */
+        "var_b": "You must escape \/* slashes in name or value strings *\/",
+        "var_c": "A longer string \/\/ like this one"
+    }
+    """
+
+    config = Config(config_str)
+    assert "AAAA" == config.var_a
+    assert "You must escape /* slashes in name or value strings */" == config.var_b
+    assert "A longer string // like this one" == config.var_c
 
 if __name__ == "__main__":
     import sys
