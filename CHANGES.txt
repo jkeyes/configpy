@@ -1,0 +1,7 @@
+0.2
+  * Moved to GitHub
+  * Changed syntax to JSON
+  * Added unrestricted mode
+
+0.1 
+  * First Cut
