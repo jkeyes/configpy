@@ -20,12 +20,13 @@
         </header>
         <section>
             <p>
-                configpy is a JSON configuration file reader with variable look-ahead
-                and look-behind, and expression support.
+                configpy is a JSON configuration file reader with variable 
+                look-ahead and look-behind, expression support, and comments.
             </p>
             <h2>Some examples</h2>
             <pre>
 config_str = """
+    /* Some example configuration items */
     {
         "a": 10,
         "b": 2,
@@ -35,6 +36,7 @@ config_str = """
         "f": "exp(${e} - 25)"
     }
 """
+
 config = Config(config_str)
 assert 10 == config.a
 assert 2 == config.b
@@ -42,7 +44,7 @@ assert 5 == config.c
 assert 50 == config.d
 assert 100 == config.e
 assert 75 == config.f
-            </pre>
+</pre>
             <h2>The nuts and bolts</h2>
             <p>
                 To grab the code, raise an issue or keep track of any updates visit the 
