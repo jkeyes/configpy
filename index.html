@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>configpy</title>
+        <link rel="stylesheet" type="text/css" href="http://keyes.ie/style.css" media="screen"/>
+        <link media="only screen and (max-device-width: 480px)"
+            href="http://keyes.ie/iPhone.css" type="text/css" rel="stylesheet" />
+        <link rel="shortcut icon" href="http://keyes.ie/favicon.jpg"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="http://keyes.ie/keyes.js"></script>
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header>
+            <h1>configpy</h1>
+        </header>
+        <section>
+            <p>
+                configpy is a JSON configuration file reader with variable look-ahead
+                and look-behind, and expression support.
+            </p>
+            <h2>Some examples</h2>
+            <pre>
+config_str = """
+    {
+        "a": 10,
+        "b": 2,
+        "c": "exp(${a} / ${b})",
+        "d": "exp(${c} * ${a})",
+        "e": "exp(${d} + 50)",
+        "f": "exp(${e} - 25)"
+    }
+"""
+config = Config(config_str)
+assert 10 == config.a
+assert 2 == config.b
+assert 5 == config.c
+assert 50 == config.d
+assert 100 == config.e
+assert 75 == config.f
+            </pre>
+            <h2>The nuts and bolts</h2>
+            <p>
+                To grab the code, raise an issue or keep track of any updates visit the 
+                <a href="http://github.com/jkeyes/pyconfig">repository</a>.
+            </p>
+        </section>
+        <footer>
+            <section id="still_here">
+                <p>
+                    Looking for my
+                    <a href="http://john.keyes.ie">blog</a>,   
+                    <a href="http://twitter.com/jkeyes/">tweets</a>, or  
+                    <a href="http://flickr.com/johnkeyes/">photos</a>?
+                </p>
+            </section>
+            <section>
+                <p class="copy">&copy; John Keyes 2010</p>
+            </section>
+        </footer>
+    </body>
+</html>
