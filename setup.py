@@ -34,7 +34,7 @@ Example
 
 setup(
     name='configpy',
-    description='Python Configuration File Parser',
+    description='JSON configuration file parser',
     url='http://jkeyes.github.com/configpy/',
     long_description=long_description,
     author='John Keyes',
