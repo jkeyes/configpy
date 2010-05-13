@@ -10,7 +10,7 @@ Example
 ::
 
     config_str = \"\"\"
-        /* Some example configuation items */
+        /* Some example configuration items */
         {
             "a": 10,
             "b": 2,
