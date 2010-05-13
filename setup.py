@@ -1,8 +1,9 @@
 from setuptools import setup
 
 long_description = """
-configpy is a JSON configuration file reader with variable look-ahead 
-and look-behind, expression support, and comments.
+configpy is a JSON configuration file reader with support 
+for variable look-ahead and look-behind, expressions, and 
+comments.
 
 Example
 -------
