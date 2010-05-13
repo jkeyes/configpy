@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     author='John Keyes',
     author_email='configpy@keyes.ie',
-    version='0.2',
+    version='0.3',
     license="BSD",
     classifiers = [
         'Development Status :: 4 - Beta',
