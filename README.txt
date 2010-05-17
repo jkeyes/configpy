@@ -63,10 +63,10 @@ Expression Support
     {
         "a": 10,
         "b": 2,
-        "c": "exp(${a} / ${b})",
-        "d": "exp(${c} * ${a})",
-        "e": "exp(${d} + 50)",
-        "f": "exp(${e} - 25)"
+        "c": "${a} / ${b}",
+        "d": "${c} * ${a}",
+        "e": "${d} + 50",
+        "f": "${e} - 25"
     }
     """
     config = Config(config_str)
@@ -84,7 +84,7 @@ nasty expressions from being run. For example:
 
 	config_str = """
 	{
-	    "write_virus": "exp(open('/etc/passwd', 'w').write(\\"# BURNED! \\"))"
+	    "write_virus": "open('/etc/passwd', 'w').write(\\"# BURNED! \\")"
 	}
 	"""
     config = Config(config_str)

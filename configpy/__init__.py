@@ -176,13 +176,12 @@ class Config(object):
                 
     def _eval(self, value):
         if type(value) is types.UnicodeType:
-            if "".join(value[0:4]) == "exp(" and value[-1] == ")":
-                try:
-                    value = eval(value[4:-1], self._globals, self._locals)
-                except SyntaxError:
-                    # just use the stripped value if there's an error in 
-                    # the expression
-                    pass
+            try:
+                value = eval(value, self._globals, self._locals)
+            except (NameError, SyntaxError):
+                # just use the stripped value if there's an error in 
+                # the expression
+                pass
         return value
         
     def _evaluate_var(self, name):

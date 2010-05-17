@@ -1,4 +1,4 @@
-import types
+import os, types
 
 from configpy import Config, FileConfig
 
@@ -81,7 +81,7 @@ def test_dict_in_list_variable():
     {
         "f": { "title": "The 39 Steps" },
         "g": { "title": "Catch-22" },
-        "h": "exp([ ${f}, ${g} ])"
+        "h": "[ ${f}, ${g} ]"
     }
     """
 
@@ -108,7 +108,7 @@ def test_eval_maths():
     {
         "a": 10,
         "b": 20,
-        "c": "exp(${a} + ${b})"
+        "c": "${a} + ${b}"
     }
     """
     config = Config(config_str)
@@ -210,10 +210,10 @@ def test_math():
     {
         "a": 10,
         "b": 2,
-        "c": "exp(${a} / ${b})",
-        "d": "exp(${c} * ${a})",
-        "e": "exp(${d} + 50)",
-        "f": "exp(${e} - 25)"
+        "c": "${a} / ${b}",
+        "d": "${c} * ${a}",
+        "e": "${d} + 50",
+        "f": "${e} - 25"
     }
     """
     config = Config(config_str)
@@ -250,6 +250,26 @@ def test_simple_variable():
     assert "AAAA" == config.var_a
     assert "You must escape /* slashes in name or value strings */" == config.var_b
     assert "A longer string // like this one" == config.var_c
+
+def test_restricted():
+    config_str = """
+    {
+        "myfile": "open('README.txt').read()"
+    }
+    """
+    config = Config(config_str)
+    assert config.myfile == "open('README.txt').read()"
+
+def test_unrestricted():
+    config_str = """
+    {
+        "myfile": "open('README.txt').read()"
+    }
+    """
+    config = Config(config_str, unrestricted=True)
+    assert config.myfile != "open('README.txt').read()"
+    assert "Simple Configuration" in config.myfile
+    assert os.path.exists('myfile.txt')
 
 if __name__ == "__main__":
     import sys
