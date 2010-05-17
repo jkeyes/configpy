@@ -1,4 +1,4 @@
-import os, types
+import types
 
 from configpy import Config, FileConfig
 
@@ -269,7 +269,6 @@ def test_unrestricted():
     config = Config(config_str, unrestricted=True)
     assert config.myfile != "open('README.txt').read()"
     assert "Simple Configuration" in config.myfile
-    assert os.path.exists('myfile.txt')
 
 if __name__ == "__main__":
     import sys
