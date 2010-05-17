@@ -15,10 +15,10 @@ Example
         {
             "a": 10,
             "b": 2,
-            "c": "exp(${a} / ${b})",
-            "d": "exp(${c} * ${a})",
-            "e": "exp(${d} + 50)",
-            "f": "exp(${e} - 25)"
+            "c": "${a} / ${b}",
+            "d": "${c} * ${a}",
+            "e": "${d} + 50",
+            "f": "${e} - 25"
         }
     \"\"\"
     
@@ -39,7 +39,7 @@ setup(
     long_description=long_description,
     author='John Keyes',
     author_email='configpy@keyes.ie',
-    version='0.3',
+    version='0.4',
     license="BSD",
     classifiers = [
         'Development Status :: 4 - Beta',

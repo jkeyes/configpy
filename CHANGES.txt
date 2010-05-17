@@ -1,3 +1,6 @@
+0.4
+  * exp(xxx) is no longer required, it now attempts to eval xxx directly
+
 0.3
   * Added support for JavaScript comments (these are stripped before parsing the JSON)
 
