@@ -10,26 +10,29 @@ Example
 
 ::
 
-    config_str = \"\"\"
-        /* Some example configuration items */
-        {
-            "a": 10,
-            "b": 2,
-            "c": "${a} / ${b}",
-            "d": "${c} * ${a}",
-            "e": "${d} + 50",
-            "f": "${e} - 25"
-        }
+    config_json = \"\"\"
+    /* Some example configuration items */
+    {
+        "a": 10,
+        "b": 2,
+        "c": "{{ ${a} / ${b} }}",
+        "d": "{{ ${c} * ${a} }}",
+        "e": "{{ ${d} + 50 }}",
+        "f": "{{ ${e} - 25 }}",
+        "g": "'some text = {{ ${a} / ${b} }}'"
+    }
     \"\"\"
-    
-    config = Config(config_str)
-    assert 10 == config.a
-    assert 2 == config.b
-    assert 5 == config.c
-    assert 50 == config.d
-    assert 100 == config.e
-    assert 75 == config.f
 
+    # note the text at the start of g makes it a text value
+
+    config = Config(config_json)
+    10 == config.a
+    2 == config.b
+    5 == config.c
+    50 == config.d
+    100 == config.e
+    75 == config.f
+    "some text = 5" == config.g
 """
 
 setup(
@@ -39,7 +42,7 @@ setup(
     long_description=long_description,
     author='John Keyes',
     author_email='configpy@keyes.ie',
-    version='0.4',
+    version='0.5',
     license="BSD",
     classifiers = [
         'Development Status :: 4 - Beta',

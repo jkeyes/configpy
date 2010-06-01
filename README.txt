@@ -11,7 +11,7 @@ Examples
 
 Simple Configuration
 
-	config_str = """
+	config_json = """
 	{
 	    "var_a": "AAAA",
 	    "var_b": 10,
@@ -20,19 +20,15 @@ Simple Configuration
 	}
 	"""
 
-	config = Config(config_str)
-	assert "AAAA" == config.var_a
-	assert type(config.var_a) == types.UnicodeType
-	assert 10 == config.var_b
-	assert type(config.var_b) == types.IntType
-	assert 10 == config.var_b
-	assert "A longer string" == config.var_c
-	assert 10.04 == config.var_d
-	assert type(config.var_d) == types.FloatType
+	config = Config(config_json)
+	"AAAA" == config['var_a']
+	10 == config['var_b']
+	"A longer string" == config['var_c']
+	10.04 == config['var_d']
 
 Variable Support (Look Behind)
 
-	config_str = """
+	config_json = """
 	{
 	    "first_name": "Howard",
 	    "second_name": "Gayle",
@@ -40,49 +36,53 @@ Variable Support (Look Behind)
 	}
 	"""
 
-	config = Config(config_str)
-	assert "Howard Gayle" == config.full_name
+	config = Config(config_json)
+	"Howard Gayle" == config['full_name']
 
 Variable Support (Look Ahead)
 
-    config_str = """
-    {
-        "first_name": "Hugo",
-        "full_name": "${first_name} ${second_name}",
-        "second_name": "Sanchez"
-    }
-    """
+	config_json = """
+	{
+	    "first_name": "Hugo",
+	    "full_name": "${first_name} ${second_name}",
+	    "second_name": "Sanchez"
+	}
+	"""
 
-    config = Config(config_str)
-    assert "Hugo Sanchez" == config.full_name
-
+	config = Config(config_json)
+	"Hugo Sanchez" == config['full_name']
 
 Expression Support 
 
-    config_str = """
-    {
-        "a": 10,
-        "b": 2,
-        "c": "${a} / ${b}",
-        "d": "${c} * ${a}",
-        "e": "${d} + 50",
-        "f": "${e} - 25"
-    }
-    """
-    config = Config(config_str)
-    assert 10 == config.a
-    assert 2 == config.b
-    assert 5 == config.c
-    assert 50 == config.d
-    assert 100 == config.e
-    assert 75 == config.f
+	config_json = """
+	{
+	    "a": 10,
+	    "b": 2,
+	    "c": "{{ ${a} / ${b} }}",
+	    "d": "{{ ${c} * ${a} }}",
+	    "e": "{{ ${d} + 50 }}",
+	    "f": "{{ ${e} - 25 }}",
+	    "g": "'some text = {{ ${a} / ${b} }}'"
+	}
+	"""
 
-Unrestricted Expression Support
+	# note the text at the start of g makes it a text value
+
+	config = Config(config_json)
+	10 == config['a']
+	2 == config['b']
+	5 == config['c']
+	50 == config['d']
+	100 == config['e']
+	75 == config['f']
+	"some text = 5" == config['g']
+
+Restricted Expression Support
 
 By default access to globals() is restricted. This prevents potentially 
 nasty expressions from being run. For example:
 
-	config_str = """
+	config_json = """
 	{
 	    "write_virus": "open('/etc/passwd', 'w').write(\\"# BURNED! \\")"
 	}
