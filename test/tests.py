@@ -285,8 +285,6 @@ class ConfigTest(unittest.TestCase):
         }
         """
         
-        # note the text at the start of g makes it a text value
-        
         config = Config(config_json)
         self.assertEquals(10, config['a'])
         self.assertEquals(2, config['b'])

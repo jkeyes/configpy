@@ -23,8 +23,6 @@ Example
     }
     \"\"\"
 
-    # note the text at the start of g makes it a text value
-
     config = Config(config_json)
     10 == config.a
     2 == config.b
