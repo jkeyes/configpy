@@ -23,6 +23,10 @@
                 configpy is a JSON configuration file reader with support 
                 for variable look-ahead and look-behind, expressions, and comments.
             </p>
+            <p>
+                Variables are represented by <code>${var_name}</code> and 
+                values are evaluated when surrounded by <code>{{ }}</code>.
+            </p>
             <h2>An example</h2>
             <pre>
 config_str = """
@@ -30,10 +34,10 @@ config_str = """
     {
         "a": 10,
         "b": 2,
-        "c": "${a} / ${b}",
-        "d": "${c} * ${a}",
-        "e": "${d} + 50",
-        "f": "${e} - 25"
+        "c": "{{ ${a} / ${b} }}",
+        "d": "{{ ${c} * ${a} }}",
+        "e": "{{ ${d} + 50 }}",
+        "f": "{{ ${e} - 25 }}"
     }
 """
 
@@ -48,16 +52,16 @@ assert 75 == config.f
             <h2>The nuts and bolts</h2>
             <p>
                 To grab the code, raise an issue or keep track of any updates visit the 
-                <a href="http://github.com/jkeyes/pyconfig">repository</a>.
+                <a href="http://github.com/jkeyes/configpy">repository</a>.
             </p>
         </section>
         <footer>
             <section id="still_here">
                 <p>
-                    Looking for my
+                    My
                     <a href="http://john.keyes.ie">blog</a>,   
-                    <a href="http://twitter.com/jkeyes/">tweets</a>, or  
-                    <a href="http://flickr.com/johnkeyes/">photos</a>?
+                    <a href="http://twitter.com/jkeyes/">tweets</a>, and  
+                    <a href="http://flickr.com/johnkeyes/">photos</a>.
                 </p>
             </section>
             <section>
