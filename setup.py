@@ -39,7 +39,7 @@ setup(
     url='http://jkeyes.github.com/configpy/',
     long_description=long_description,
     author='John Keyes',
-    author_email='configpy@keyes.ie',
+    author_email='john@keyes.ie',
     version='0.5',
     license="BSD",
     classifiers = [
